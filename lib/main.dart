@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'card_design.dart';
 
 void main() {
-  runApp(MyDigitalCard());
+  runApp(const MyDigitalCard());
 }
 
 class MyDigitalCard extends StatelessWidget {

@@ -1,5 +1,8 @@
+import 'package:digital_card/core/constants/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'core/constants/app_styles.dart';
+import 'core/constants/strings.dart';
 
 class CardDesign extends StatelessWidget {
   const CardDesign({super.key});
@@ -9,79 +12,77 @@ class CardDesign extends StatelessWidget {
     return Scaffold(
         // backgroundColor: Colors.cyan,
         appBar: AppBar(
-          title: const Text("My ID Card"),
+          title: const Text(Strings.appName),
           // backgroundColor: Colors.red,
         ),
         body: Center(
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          CircleAvatar(
-              radius: 80, backgroundImage: AssetImage("assets/profile.jpg")),
-          SizedBox(height: 15),
+          const CircleAvatar(
+              radius: 80, backgroundImage: AssetImage(AppImages.profilePic)),
+          const SizedBox(height: 15),
+          Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+            Text(Strings.name, style: AppStyles.mainHeading),
+            Text(
+              Strings.nameValue,
+              style: AppStyles.subHeading,
+            )
+          ]),
+          const SizedBox(height: 15),
+          Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+            Text(Strings.rollNo, style: AppStyles.mainHeading),
+            Text(
+              Strings.rollNoValue,
+              style: AppStyles.subHeading,
+            )
+          ]),
+          const SizedBox(height: 15),
           Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
             Text(
-              "Name:",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              Strings.dob,
+              style: AppStyles.mainHeading,
             ),
             Text(
-              "Gaurav Giri",
-              style: TextStyle(fontSize: 20),
+              Strings.dobValue,
+              style: AppStyles.subHeading,
             )
           ]),
-          SizedBox(height: 15),
-          Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-            Text("Roll No:",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-            Text(
-              "Kan077Bct034",
-              style: TextStyle(fontSize: 20),
-            )
-          ]),
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
           Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
             Text(
-              "DOB:\t",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            Text(
-              "Jun 15, 2023",
-              style: TextStyle(fontSize: 20),
-            )
-          ]),
-          SizedBox(height: 15),
-          Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-            Text(
-              "Website:\t",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              Strings.website,
+              style: AppStyles.mainHeading,
             ),
             GestureDetector(
               onTap: () {
-                callToNumber(domain: "gauravgiri.com.np");
+                callToNumber(domain: Strings.websiteValue);
               },
-              child: Text(
-                "www.gauravgiri.com.np",
-                style: TextStyle(fontSize: 20),
+              child: const Row(
+                children: [
+                  Icon(
+                    Icons.web,
+                    color: Colors.blueGrey,
+                  ),
+                  Text(
+                    Strings.websiteValue,
+                    style: TextStyle(fontSize: 20, color: Colors.blue),
+                  ),
+                ],
               ),
             )
           ]),
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
           Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
             Text(
-              "Contact:\t",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              Strings.contact,
+              style: AppStyles.mainHeading,
             ),
             Text(
-              "gaurovgiri@gmail.com",
-              style: TextStyle(fontSize: 20),
+              Strings.contactValue,
+              style: AppStyles.subHeading,
             )
           ]),
         ])));
-  }
-
-  Future<void> _launchUrl(String url) async {
-    if (!await launchUrl(Uri.parse(url))) {
-      throw Exception('Could not launch $url');
-    }
   }
 
   callToNumber({required String domain}) async {
